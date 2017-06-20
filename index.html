@@ -4,32 +4,120 @@
 <head>
     <meta charset="UTF-8">
     <title>BandStalker</title>
+
+    <!--Mapbox-->
+    <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
+    <!--Mapbox GL
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>-->
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="assets/css/font-awesome/css/font-awesome.min.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/app.css">
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</head>
+
+<body>
+    <div class="row nav-row">
+        <nav>
+            <div class="nav-wrapper valign-wrapper">
+                <img src="assets/images/002-people.png" alt="">
+                <a href="#" id="logo">BandStalker</a>
+                <img src="assets/images/001-minivan.png" alt="">
+                <div class="col m2 right hide-on-small-only" id="search-container">
+                    <form id=search-form>
+                        <input id="search" type="text" name="search" value="Search...">
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="row content-row">
+        <!--Artist Content-->
+        <div class="col s12 m6" id="artist-container">
+            <div class="row artist-header-row">
+                <div class="col s12" id="artist-header">
+                    <div class="img-wrapper left">
+                        <img src="assets/images/avatar.png" alt="" id="avatar" class="responsive-img">
+                    </div>
+                    <div id="artist-name" class="left">
+                        <h4>Into it. Over it.</h4>
+                        <ul>
+                            <li>Alternative</li>
+                            <li>Emo</li>
+                            <li>Rock</li>
+                            <li>Punk</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12" id="artist-tabs">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a href="#test1" class="active">Information</a></li>
+                        <li class="tab col s3"><a href="#test2">Top Tracks</a></li>
+                        <li class="tab col s3"><a href="#test3">Discography</a></li>
+                        <li class="tab col s3"><a href="#test5">Events</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Map Content-->
+        <div class="col s12 m6" id="map-container">
+            <div id='map' style='width: 100%; height: 500px;'></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <!--Search Overlay-->
+    <div id="overlay-search-container">
+        <div class="overlay-content">
+            <div id="overlay-search-header">
+                <span id="overlay-search-text">Search</span>
+                <span id="overlay-search-close"><i class="fa fa-times" aria-hidden="true"></i></span>
+            </div>
+            <div id="overlay-search">
+                <input id="overlay-search-input" type="text">
+            </div>
+            <ul id="overlay-search-results">
+                <li class="search-result"><a href="#">results results results</a></li>
+                <li class="search-result"><a href="#">results results results</a></li>
+                <li class="search-result"><a href="#">results results results</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <!--Mapbox-->
+    <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
+    <!--Mapbox GL
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css' rel='stylesheet' />-->
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- lodash -->
     <script type="text/javascript" src="assets/javascript/lodash.custom.min.js"></script>
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-</head>
-
-<body>
-    <form id="search-form">
-        <label for="band-search">Search For a Band</label>
-        <input type="text" id="band-search">
-        <br>
-    </form>
-    <div class="container">
-        <button id="artist-info">
-            Get artist info
-        </button>
-        <div id="band-info-div">
-        </div>
-    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <!-- Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
     <!-- JavaScript -->
-    <script src="assets/javascript/app.js"></script>
+    <!--<script src="assets/javascript/app.js"></script>-->
+    <script src="assets/javascript/search.js"></script>
+    <script src="assets/javascript/map.js"></script>
 </body>
 
 </html>

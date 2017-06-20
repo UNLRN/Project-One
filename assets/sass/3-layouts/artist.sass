@@ -1,0 +1,46 @@
+#artist-container
+    height: 100vh
+    background-color: darken($dark, 5%)
+    padding: 0
+
+#artist-header
+    height: 150px
+    padding: 10px 0
+    background-color: lighten($dark, 2%)
+    border: 1px solid $dark
+    .img-wrapper
+        display: inline-block
+        height: 100%
+        margin: 0 10px
+        img
+            margin: 5px
+            padding: 5px
+            height: 90%
+            border-radius: 50%
+            box-shadow: 0 0 0 2pt white
+    #artist-name
+        height: 100%
+        ul
+            li
+                display: inline-block
+            li:after
+                content: " | "
+            li:last-child:after
+                content: " "
+
+#artist-tabs
+    padding: 0
+    ul
+        background-color: lighten($dark, 5%)
+    li
+        a
+            color: $white
+            text-decoration: none
+        a:hover
+            color: $blue
+        
+
+.indicator
+    background-color: $blue !important
+.active
+    color: $blue !important
