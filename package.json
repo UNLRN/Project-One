@@ -1,0 +1,30 @@
+{
+  "name": "project-one",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UNLRN/Project-One.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UNLRN/Project-One/issues"
+  },
+  "homepage": "https://github.com/UNLRN/Project-One#readme",
+  "devDependencies": {
+    "bourbon": "^4.3.4",
+    "bourbon-bitters": "^1.2.1",
+    "bourbon-neat": "^2.0.0",
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-cssbeautify": "^0.1.3",
+    "gulp-sass": "^3.1.0",
+    "gulp-util": "^3.0.8"
+  }
+}
