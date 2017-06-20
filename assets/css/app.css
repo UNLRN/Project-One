@@ -7180,10 +7180,11 @@ nav {
 #logo {
   font-size: 40px;
   padding: 0 15px;
-  text-transform: uppercase; }
+  letter-spacing: 5px; }
 
 .nav-wrapper img {
-  padding: 0 10px !important;
+  padding-left: 15px;
+  padding-right: 100px !important;
   height: 40px; }
 
 #search {
@@ -7207,7 +7208,7 @@ nav {
   height: 100vh;
   width: 100vw;
   z-index: 9999;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
   overflow: auto;
   transform: scale(0); }
 
@@ -7246,6 +7247,8 @@ nav {
   font-size: 32px;
   box-sizing: border-box;
   padding-left: 10px; }
+  #overlay-search-input:focus {
+    border-bottom: 1px solid #3388FF; }
 
 #overlay-search-results {
   width: 80%;
@@ -7293,8 +7296,12 @@ nav {
       box-shadow: 0 0 0 2pt white; }
   #artist-header #artist-name {
     height: 100%; }
+    #artist-header #artist-name h4 {
+      text-transform: uppercase;
+      letter-spacing: 2px; }
     #artist-header #artist-name ul li {
-      display: inline-block; }
+      display: inline-block;
+      letter-spacing: 1px; }
     #artist-header #artist-name ul li:after {
       content: " | "; }
     #artist-header #artist-name ul li:last-child:after {
@@ -7305,13 +7312,15 @@ nav {
   #artist-tabs ul {
     background-color: #313242; }
   #artist-tabs li a {
+    font-weight: bold;
+    letter-spacing: 1px;
     color: #F0EFF4;
     text-decoration: none; }
   #artist-tabs li a:hover {
-    color: #1C7293; }
+    color: #3388FF; }
 
 .indicator {
-  background-color: #1C7293 !important; }
+  background-color: #3388FF !important; }
 
 .active {
-  color: #1C7293 !important; }
+  color: #3388FF !important; }
