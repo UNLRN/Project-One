@@ -10,12 +10,12 @@
     <!--Mapbox GL
     <script src='https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>-->
     <!--Font Awesome-->
-    <link rel="stylesheet" href="assets/css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="stylesheets/css/libs/font-awesome/css/font-awesome.min.css">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">-->
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/app.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/css/app.css">
     <!--Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 </head>
@@ -26,8 +26,8 @@
             <div class="nav-wrapper valign-wrapper">
                 <a href="#" id="logo">Bandstalker</a>
                 <div class="img-wrapper">
-                    <img src="assets/images/002-people.png" alt="">
-                    <img src="assets/images/001-minivan.png" alt="">
+                    <img src="images/002-people.png" alt="">
+                    <img src="images/001-minivan.png" alt="">
                 </div>
                 <div class="col m2 right hide-on-small-only" id="search-container">
                     <form id=search-form>
@@ -43,7 +43,7 @@
             <div class="row artist-header-row">
                 <div class="col s12" id="artist-header">
                     <div class="img-wrapper left">
-                        <img src="assets/images/avatar.png" alt="" id="avatar" class="responsive-img">
+                        <img src="images/avatar.png" alt="" id="avatar" class="responsive-img">
                     </div>
                     <div id="artist-name" class="left">
                         <h4>Into it. Over it.</h4>
@@ -89,12 +89,11 @@
                 </div>
             </div>
         </div>
-
+    </div>
 
         <!--Map Content-->
-        <div class="col s12 m6" id="map-container">
-            <div id='map' style='width: 100%; height: 500px;'></div>
-        </div>
+    <div id="map-container">
+        <div id='map' style='width: 100%; height: 600px;'></div>
     </div>
 
 
@@ -116,9 +115,6 @@
                 <input id="overlay-search-input" type="text">
             </div>
             <ul id="overlay-search-results">
-                <li class="search-result"><a href="#">results results results</a></li>
-                <li class="search-result"><a href="#">results results results</a></li>
-                <li class="search-result"><a href="#">results results results</a></li>
             </ul>
         </div>
     </div>
@@ -132,16 +128,16 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- lodash -->
-    <script type="text/javascript" src="assets/javascript/lodash.custom.min.js"></script>
+    <script type="text/javascript" src="javascripts/libs/lodash.custom.min.js"></script>
     <!-- Bootstrap -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>-->
     <!-- Materialize -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
     <!-- JavaScript -->
-    <script src="assets/javascript/app.js"></script>
-    <script src="assets/javascript/search.js"></script>
-    <script src="assets/javascript/map.js"></script>
+    <!--<script src="assets/javascript/app.js"></script>-->
+    <script src="javascripts/search.js"></script>
+    <script src="javascripts/map.js"></script>
 </body>
 
 </html>
