@@ -10,7 +10,7 @@ var artist = $("#artist").val();
         url: 'https://rest.bandsintown.com/artists/' + artist + '/events?app_id=bootcamp',
     }).then(function(data) {
         console.log(data);
-
+        $('#event-table > tbody').empty();
         // for (var i = 0; i < data.length; i++) {
         //     console.log(data[i].venue.name);
         //     var div = $("<li>");
