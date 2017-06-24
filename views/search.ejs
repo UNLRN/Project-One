@@ -6,9 +6,9 @@
     <title>BandStalker</title>
 
     <!--Mapbox-->
-    <link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />
-    <!--Mapbox GL
-    <script src='https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>-->
+    <!--<link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />-->
+    <!--Mapbox GL-->
+    <!--<script src='https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>-->
     <!--Font Awesome-->
     <link rel="stylesheet" href="stylesheets/css/libs/font-awesome/css/font-awesome.min.css">
     <!-- Bootstrap -->
@@ -37,7 +37,7 @@
             </div>
         </nav>
     </div>
-    <div class="row content-row">
+    <div class="content-row">
         <!--Artist Content-->
         <div class="col s12 m6" id="artist-container">
             <div class="row artist-header-row">
@@ -69,31 +69,48 @@
             <div class="row">
                 <div class="col s12" id="information">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores ipsum perferendis quae ipsa voluptate dolorem repellat explicabo hic iure laboriosam veritatis, earum ratione optio magnam provident, exercitationem fugit et eaque.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores ipsum perferendis quae ipsa voluptate dolorem repellat
+                        explicabo hic iure laboriosam veritatis, earum ratione optio magnam provident, exercitationem fugit
+                        et eaque.
                     </p>
                 </div>
                 <div class="col s12" id="top-tracks" hidden>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt deserunt facere accusantium rem nobis necessitatibus eum velit atque ab voluptatum aperiam dicta numquam, tempore voluptate? Dicta culpa provident fuga! Alias ullam cum nihil id quod dolore distinctio aliquid molestias nemo sint quas qui aliquam officia iure fuga ex vel sapiente inventore, fugiat asperiores commodi ea impedit nam deserunt! Commodi incidunt facilis nesciunt consequuntur provident saepe aliquid, soluta rerum eligendi molestiae ipsam. In sint voluptates corrupti rem, deleniti adipisci, doloribus ipsa illo provident impedit excepturi culpa amet nulla cum reprehenderit, natus officiis ad sunt unde qui ea iusto et. Minus, rem!
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt deserunt facere accusantium rem nobis necessitatibus eum velit
+                        atque ab voluptatum aperiam dicta numquam, tempore voluptate? Dicta culpa provident fuga! Alias ullam
+                        cum nihil id quod dolore distinctio aliquid molestias nemo sint quas qui aliquam officia iure fuga
+                        ex vel sapiente inventore, fugiat asperiores commodi ea impedit nam deserunt! Commodi incidunt facilis
+                        nesciunt consequuntur provident saepe aliquid, soluta rerum eligendi molestiae ipsam. In sint voluptates
+                        corrupti rem, deleniti adipisci, doloribus ipsa illo provident impedit excepturi culpa amet nulla
+                        cum reprehenderit, natus officiis ad sunt unde qui ea iusto et. Minus, rem!
                     </p>
                 </div>
                 <div class="col s12" id="discography" hidden>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta suscipit assumenda sint, nemo ullam temporibus beatae minus culpa aliquid molestias, maiores magnam. Ducimus veniam nam saepe sed inventore, odio nisi quas repellendus eum dolor vel sint aperiam, illum fugit numquam omnis nobis in repellat animi error non ipsa architecto tempora sunt. Voluptates ullam quibusdam, cumque optio, vero molestias perferendis labore iste suscipit deserunt repellendus quidem itaque aspernatur doloremque quos dicta nobis eaque deleniti culpa minus vitae delectus corporis rerum recusandae. Harum itaque deserunt, maiores, officia blanditiis amet, doloremque accusamus aperiam totam alias animi iste nostrum iusto sit at. Repellat, iusto.
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta suscipit assumenda sint, nemo ullam temporibus beatae minus
+                        culpa aliquid molestias, maiores magnam. Ducimus veniam nam saepe sed inventore, odio nisi quas repellendus
+                        eum dolor vel sint aperiam, illum fugit numquam omnis nobis in repellat animi error non ipsa architecto
+                        tempora sunt. Voluptates ullam quibusdam, cumque optio, vero molestias perferendis labore iste suscipit
+                        deserunt repellendus quidem itaque aspernatur doloremque quos dicta nobis eaque deleniti culpa minus
+                        vitae delectus corporis rerum recusandae. Harum itaque deserunt, maiores, officia blanditiis amet,
+                        doloremque accusamus aperiam totam alias animi iste nostrum iusto sit at. Repellat, iusto.
                     </p>
                 </div>
                 <div class="col s12" id="events" hidden>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem aspernatur odio eum, in qui odit modi libero fuga numquam culpa, voluptas doloremque beatae, repudiandae maiores ex rerum consequuntur reiciendis. Maiores placeat nihil omnis dolores porro dolorum, voluptas aliquam nobis fugit cum id optio voluptate, dolore sequi, aut? Similique temporibus, a!
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem aspernatur odio eum, in qui odit modi libero fuga numquam
+                        culpa, voluptas doloremque beatae, repudiandae maiores ex rerum consequuntur reiciendis. Maiores
+                        placeat nihil omnis dolores porro dolorum, voluptas aliquam nobis fugit cum id optio voluptate, dolore
+                        sequi, aut? Similique temporibus, a!
                     </p>
                 </div>
             </div>
         </div>
     </div>
 
-        <!--Map Content-->
+    <!--Map Content-->
     <div id="map-container">
-        <div id='map' style='width: 100%; height: 600px;'></div>
+        <div id='map'></div>
     </div>
 
 
@@ -122,9 +139,11 @@
 
 
     <!--Mapbox-->
-    <script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>
-    <!--Mapbox GL
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css' rel='stylesheet' />-->
+    <!--<script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>-->
+    <!--Mapbox GL-->
+    <!--<link href='https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css' rel='stylesheet' />-->
+    <!--Google Maps-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKiV0NAdFYgjEssNO-8Dtk0BXCex91eA8&callback=initMap" async defer></script>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- lodash -->
