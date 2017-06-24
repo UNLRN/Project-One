@@ -16,152 +16,36 @@ $.ajax({
         eventLoc.push(locObj);
     }
 }).then(function () {
-    L.mapbox.accessToken = 'pk.eyJ1IjoidW5scm4iLCJhIjoiY2ozejI1cXNqMDBidDMyamtnbzN3b21tMiJ9.YDWSfOH7HuBlj79uo2Ou7A';
-    var map = L.mapbox.map('map', 'mapbox.streets')
-        .setView([eventLoc[0]["venue-0"].latitude, eventLoc[0]["venue-0"].longitude], 4);
-    L.mapbox.styleLayer('mapbox://styles/unlrn/cj44t0yip9y6v2rmrz9br04sk').addTo(map);
-    // Add a new line to the map with no points.
-    var polyline = L.polyline([], {
-        className: "poly-line"
-    }).addTo(map);
+    function initMap() {
+        var chicago = {lat: 41.85, lng: -87.65};
+        var indianapolis = {lat: 39.79, lng: -86.14};
 
-    // Keep track of points added to the map
-    let pointsAdded = 0;
+        var mapOptions = {
+            scrollwheel: false,
+            zoom: 7,
+            styles: [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#000000"},{"lightness":40}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#000000"},{"lightness":16}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":17},{"weight":1.2}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":21}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":16}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":19}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":17}]}]
+        };
 
-    function add() {
-        var index = pointsAdded.toString();
-        var lat = eventLoc[index]["venue-" + index].latitude;
-        var lng = eventLoc[index]["venue-" + index].longitude;
+        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-        // `addLatLng` takes a new latLng coordinate and puts it at the end of the
-        // line. 
-        polyline.addLatLng(
-            L.latLng(lat, lng)
-        );
-        // Pan the map along with where the line is being added.
-        map.panTo([lat, lng], 9);
+        var directionsDisplay = new google.maps.DirectionsRenderer({
+          map: map
+        });
 
-        if (++pointsAdded < eventLoc.length) window.setTimeout(add, 500);
-    }
+        // Set destination, origin and travel mode.
+        var request = {
+          destination: indianapolis,
+          origin: chicago,
+          travelMode: 'DRIVING'
+        };
 
-    // Start drawing the polyline.
-    add(eventLoc);
+        // Pass the directions request to the directions service.
+        var directionsService = new google.maps.DirectionsService();
+        directionsService.route(request, function(response, status) {
+          if (status == 'OK') {
+            // Display the route on the map.
+            directionsDisplay.setDirections(response);
+          }
+        });
+      }
 });
-
-
-
-// MAPBOX GL
-// $.ajax({
-//     method: 'GET',
-//     url: "https://rest.bandsintown.com/artists/pile/events?app_id=gtbc"
-// }).then(function (data) {
-//     for (var index = 0; index < data.length; index++) {
-//         var element = data[index];
-//         let venue = "venue-" + index;
-//         let locObj = {};
-//         locObj[venue] = {
-//             "latitude": element.venue.latitude,
-//             "longitude": element.venue.longitude
-//         };
-//         eventLoc.push(locObj);
-//     }
-// }).then(function () {
-//     mapboxgl.accessToken = 'pk.eyJ1IjoidW5scm4iLCJhIjoiY2ozejI1cXNqMDBidDMyamtnbzN3b21tMiJ9.YDWSfOH7HuBlj79uo2Ou7A';
-//     var map = new mapboxgl.Map({
-//         container: 'map',
-//         style: 'mapbox://styles/unlrn/cj44t0yip9y6v2rmrz9br04sk'
-//            // 'mapbox://styles/mapbox/dark-v9'
-//     });
-
-
-//     // Create a GeoJSON source with an empty lineString.
-//     var geojson = {
-//         "type": "FeatureCollection",
-//         "features": [{
-//             "type": "Feature",
-//             "geometry": {
-//                 "type": "LineString",
-//                 "coordinates": [
-//                     [0, 0]
-//                 ]
-//             }
-//         }]
-//     };
-
-//     var speedFactor = 30; // number of frames per longitude degree
-//     var animation; // to store and cancel the animation
-//     var startTime = 0;
-//     var progress = 0; // progress = timestamp - startTime
-//     var resetTime = false; // indicator of whether time reset is needed for the animation
-//     var pauseButton = document.getElementById('pause');
-
-//     map.on('load', function () {
-
-//         // add the line which will be modified in the animation
-//         map.addLayer({
-//             'id': 'line-animation',
-//             'type': 'line',
-//             'source': {
-//                 'type': 'geojson',
-//                 'data': geojson
-//             },
-//             'layout': {
-//                 'line-cap': 'round',
-//                 'line-join': 'round'
-//             },
-//             'paint': {
-//                 'line-color': '#ed6498',
-//                 'line-width': 5,
-//                 'line-opacity': .8
-//             }
-//         });
-
-//         startTime = performance.now();
-
-//         animateLine();
-
-//         // click the button to pause or play
-//         pauseButton.addEventListener('click', function () {
-//             pauseButton.classList.toggle('pause');
-//             if (pauseButton.classList.contains('pause')) {
-//                 cancelAnimationFrame(animation);
-//             } else {
-//                 resetTime = true;
-//                 animateLine();
-//             }
-//         });
-
-//         // reset startTime and progress once the tab loses or gains focus
-//         // requestAnimationFrame also pauses on hidden tabs by default
-//         document.addEventListener('visibilitychange', function () {
-//             resetTime = true;
-//         });
-
-//         // animated in a circle as a sine wave along the map.
-//         function animateLine(timestamp) {
-//             if (resetTime) {
-//                 // resume previous progress
-//                 startTime = performance.now() - progress;
-//                 resetTime = false;
-//             } else {
-//                 progress = timestamp - startTime;
-//             }
-
-//             // restart if it finishes a loop
-//             if (progress > speedFactor * 360) {
-//                 startTime = timestamp;
-//                 geojson.features[0].geometry.coordinates = [];
-//             } else {
-//                 var x = progress / speedFactor;
-//                 // draw a sine wave with some math.
-//                 var y = Math.sin(x * Math.PI / 90) * 40;
-//                 // append new coordinates to the lineString
-//                 geojson.features[0].geometry.coordinates.push([x, y]);
-//                 // then update the map
-//                 map.getSource('line-animation').setData(geojson);
-//             }
-//             // Request the next frame of the animation.
-//             animation = requestAnimationFrame(animateLine);
-//         }
-//     });
-// });
