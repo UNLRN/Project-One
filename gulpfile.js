@@ -6,7 +6,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const cssbeautify = require('gulp-cssbeautify');
 
 gulp.task('styles', function () {
-	gulp.src('./public/stylesheets/sass/app.sass')
+	gulp.src('./assets/sass/app.sass')
 	.pipe(sass())
 	.pipe(autoprefixer({
 		browsers: ['last 2 versions'],
@@ -16,7 +16,7 @@ gulp.task('styles', function () {
 		indent: '    ',
 		autosemicolon: true
 	}))
-	.pipe(gulp.dest('./public/stylesheets/css'))
+	.pipe(gulp.dest('./assets/css'))
 	.pipe(browserSync.reload({stream: true}))
 	.on('error', gutil.log);
 });
@@ -28,8 +28,8 @@ gulp.task('serve', function () {
 		}
 	});
 
-	gulp.watch('./sass/*.sass', ['styles']);
-	gulp.watch('./assets/javascript/*.js').on('change', browserSync.reload)
+	gulp.watch('./assets/sass/**/*.sass', ['styles']);
+	gulp.watch('./assets/javascript/**/*.js').on('change', browserSync.reload);
 	gulp.watch('./**/*.html').on('change', browserSync.reload);
 });
 
