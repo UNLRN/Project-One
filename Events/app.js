@@ -24,7 +24,7 @@ var artist = $("#artist").val();
         //     $(div).appendTo("#events");
         // }
         for (var i = 0; i < data.length; i++){
-            $('#event-table > tbody').append("<tr><td>" + data[i].venue.name + "</td><td>" + data[i].datetime + "</td><td>" + data[i].venue.city + "</td><td>" + data[i].venue.region + "</td><td>" + data[i].venue.country + "</td></tr>"
+            $('#event-table > tbody').append("<tr><td>" + data[i].venue.name + "</td><td>" + data[i].datetime + "</td><td>" + data[i].venue.city + "</td><td>" + data[i].venue.region + "</td><td>" + data[i].venue.country + "</td><td>" + data[i].venue.latitude + "</td><td>" + data[i].venue.longitude + "</td></tr>"
             )};
     });
 });
