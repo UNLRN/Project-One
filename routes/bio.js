@@ -18,7 +18,7 @@ router.post('/', function (req, res, next) {
         let html = `<p>${body.artist.bio.summary}</p>`
         res.send(html);
     });
-})
+});
 
 
 module.exports = router;

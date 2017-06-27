@@ -6,22 +6,25 @@
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
 
 #artist-header
+    display: table
     height: 150px
     padding: 10px 0
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
     background-color: $black
     .img-wrapper
-        display: inline-block
-        height: 100%
+        display: table-cell
         margin: 0 10px
         img
             margin: 5px
             padding: 5px
-            height: 90%
+            height: 128px
             border-radius: 50%
             box-shadow: 0 0 0 2pt white
+        i
+            font-size: 128px
     #artist-name
-        height: 100%
+        display: table-cell
+        vertical-align: middle
         h4
             text-transform: uppercase
             letter-spacing: 2px
@@ -45,16 +48,20 @@
             color: $white
             text-decoration: none
         a:hover
-            color: $green
+            color: $orange
         
 
 .indicator
-    background-color: $green !important
+    background-color: $orange !important
 .active
-    color: $green !important
+    color: $orange !important
 
 p
     color: $white
 
 #information, #top-tracks, #discography, #events
     background-color: $black
+
+#information
+    p
+        font-family: $secondary

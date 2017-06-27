@@ -7161,7 +7161,8 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     margin-bottom: 5em; } }
 
 body, html {
-  background-color: #222325;
+  margin: 0;
+  padding: 0;
   font-family: 'Open Sans', sans-serif;
   color: #FFFFFF; }
 
@@ -7263,7 +7264,8 @@ body, html {
   box-sizing: border-box;
   padding-left: 10px; }
   #overlay-search-input:focus {
-    border-bottom: 1px solid #3388FF; }
+    border-bottom: 1px solid #ff662b;
+    box-shadow: 0 1px 0 0 #de3e00; }
 
 #overlay-search-results {
   width: 80%;
@@ -7305,22 +7307,25 @@ body, html {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
 #artist-header {
+  display: table;
   height: 150px;
   padding: 10px 0;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   background-color: #2C2C2F; }
   #artist-header .img-wrapper {
-    display: inline-block;
-    height: 100%;
+    display: table-cell;
     margin: 0 10px; }
     #artist-header .img-wrapper img {
       margin: 5px;
       padding: 5px;
-      height: 90%;
+      height: 128px;
       border-radius: 50%;
       box-shadow: 0 0 0 2pt white; }
+    #artist-header .img-wrapper i {
+      font-size: 128px; }
   #artist-header #artist-name {
-    height: 100%; }
+    display: table-cell;
+    vertical-align: middle; }
     #artist-header #artist-name h4 {
       text-transform: uppercase;
       letter-spacing: 2px; }
@@ -7342,16 +7347,61 @@ body, html {
     color: #FFFFFF;
     text-decoration: none; }
   #artist-tabs li a:hover {
-    color: #7DB375; }
+    color: #ff662b; }
 
 .indicator {
-  background-color: #7DB375 !important; }
+  background-color: #ff662b !important; }
 
 .active {
-  color: #7DB375 !important; }
+  color: #ff662b !important; }
 
 p {
   color: #FFFFFF; }
 
 #information, #top-tracks, #discography, #events {
   background-color: #2C2C2F; }
+
+#information p {
+  font-family: "Spectral", serif; }
+
+.img-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+  background-image: url("../../images/splash.jpg");
+  background-blend-mode: multiply;
+  background-color: #ffb091;
+  background-size: cover;
+  z-index: -1;
+  overflow: hidden; }
+  .img-container:before {
+    transform: rotate(-45deg) translate(20%, 170%) scale(3);
+    background: #202022;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 5; }
+
+.badge {
+  position: absolute;
+  bottom: 10px;
+  left: 10px; }
+
+.text-container {
+  background-color: transparent !important;
+  margin: 0 auto;
+  text-align: center; }
+
+header {
+  margin: 0 auto; }
+  header h1 {
+    margin: 100px 50px;
+    font-weight: bold;
+    letter-spacing: 20px; }
+
+.logo {
+  float: right; }
