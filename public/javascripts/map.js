@@ -1,53 +1,58 @@
-let eventLoc = [];
+var map = new google.maps.Map(document.getElementById('map'), {
+    scrollwheel: false,
+    center: {
+        lat: -34.397,
+        lng: 150.644
+    },
+    zoom: 7
+});
 
-// DEFAULT MAP
+function initVenues(beg, wypts, end) {
+
+    console.log(wypts);
+    var directionsDisplay = new google.maps.DirectionsRenderer({
+        map: map
+    });
+
+    // Set destination, origin and travel mode.
+    var request = {
+        origin: beg,
+        waypoints: wypts,
+        destination: end,
+        travelMode: 'DRIVING',
+        optimizeWaypoints: false
+    };
+
+    // Pass the directions request to the directions service.
+    var directionsService = new google.maps.DirectionsService();
+    directionsService.route(request, function (response, status) {
+        if (status == 'OK') {
+            // Display the route on the map.
+            directionsDisplay.setDirections(response);
+        }
+    });
+}
+
+
+
 $.ajax({
     method: 'GET',
-    url: "https://rest.bandsintown.com/artists/pile/events?app_id=gtbc"
-}).then(function (data) {
-    for (var index = 0; index < data.length; index++) {
+    url: 'https://rest.bandsintown.com/artists/metallica/events?app_id=gtbc'
+}).then(function(data) {
+    console.log(data);
+    let eventLocations = [];
+    for (var index = 0; index < 5; index++) {
         var element = data[index];
-        let venue = "venue-" + index;
-        let locObj = {};
-        locObj[venue] = {
-            "latitude": element.venue.latitude,
-            "longitude": element.venue.longitude
-        };
-        eventLoc.push(locObj);
+        let latLng = new google.maps.LatLng(element.venue.latitude, element.venue.longitude);
+        let loc = { location: latLng, stopover: true };
+        eventLocations.push(loc);
     }
-}).then(function () {
+    let origin = eventLocations[0].location;
+    let waypoints = eventLocations.slice(1, (eventLocations[eventLocations.length-1]));
+    let destination = eventLocations[eventLocations.length-1].location;
+
+    initVenues(origin, waypoints, destination);
 
 });
 
-    function initMap() {
-        var chicago = {lat: 41.85, lng: -87.65};
-        var indianapolis = {lat: 39.79, lng: -86.14};
 
-        var mapOptions = {
-            scrollwheel: false,
-            zoom: 7,
-            styles: [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#000000"},{"lightness":40}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#000000"},{"lightness":16}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":17},{"weight":1.2}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":21}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":16}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":19}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":17}]}]
-        };
-
-        var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-        var directionsDisplay = new google.maps.DirectionsRenderer({
-          map: map
-        });
-
-        // Set destination, origin and travel mode.
-        var request = {
-          destination: indianapolis,
-          origin: chicago,
-          travelMode: 'DRIVING'
-        };
-
-        // Pass the directions request to the directions service.
-        var directionsService = new google.maps.DirectionsService();
-        directionsService.route(request, function(response, status) {
-          if (status == 'OK') {
-            // Display the route on the map.
-            directionsDisplay.setDirections(response);
-          }
-        });
-      }
