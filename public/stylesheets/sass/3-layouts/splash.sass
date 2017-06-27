@@ -1,0 +1,41 @@
+.img-container
+    position: absolute
+    top: 0
+    left: 0
+    width: 100vw
+    min-height: 100vh
+    background-image: url('../../images/splash.jpg')
+    background-blend-mode: multiply;
+    background-color: lighten($orange, 20%)
+    background-size: cover
+    z-index: -1
+    overflow: hidden
+    &:before 
+        transform: rotate(-45deg) translate(20%,170%) scale(3)
+        background: darken($black, 5%)
+        content: ''
+        display: block
+        height: 100%
+        position: absolute
+        width: 100%
+        z-index: 5
+
+.badge
+    position: absolute
+    bottom: 10px
+    left: 10px
+
+.text-container
+    background-color: transparent !important
+    margin: 0 auto
+    text-align: center
+
+header
+    margin: 0 auto
+    h1
+        margin: 100px 50px
+        font-weight: bold
+        letter-spacing: 20px
+
+.logo
+    float: right

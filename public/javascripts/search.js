@@ -23,6 +23,7 @@ function search(e) {
 
 function populateInfo(e) {
     e.preventDefault();
+    closeSearch();
     let artist = ($(this).text());
     let id = ($(this).attr('artistid'));
 
@@ -30,25 +31,40 @@ function populateInfo(e) {
     $.ajax({
         method: 'POST',
         url: '/events?q=' + artist
-    }).then(function(data) {
-        console.log(data);
-        let date = moment(data[0].date)
+    }).then(function(events) {
+        console.log(events);
 
-        let month = date.format('MMM')
-        let day = date.format('D')
-        let year = date.format('YYYY')
+        for (let index = 0; index < events.length; index++) {
+            let element = events[index];
+            let latLng = new google.maps.LatLng(element.lat, element.lng);
+            let marker = new google.maps.Marker({
+                position: latLng,
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 10
+                },
+                map: map,
+                title: element.venue
+            });
+        } 
 
-        console.log(`
-        ${month}
-        ${day}
-        ${year}
-        `)
+        // let date = moment(data[0].date)
+
+        // let month = date.format('MMM')
+        // let day = date.format('D')
+        // let year = date.format('YYYY')
+
+        // console.log(`
+        // ${month}
+        // ${day}
+        // ${year}
+        // `)
     });
 
 // ARTIST BIO
     $.ajax({
         method: 'POST',
-        url: '/artist?q=' + artist
+        url: '/bio?q=' + artist
     }).then(function(html) {
         $('#information').html(html);
     });
@@ -77,8 +93,9 @@ function populateInfo(e) {
         console.log(data);
     });
 
-    closeSearch();
+    
 }
+
 
 
 $('#overlay-search-input').on('keydown', _.debounce(search, 200));
