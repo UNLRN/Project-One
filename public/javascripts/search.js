@@ -3,39 +3,86 @@ $('#search').on('focus', function(){
     $('#overlay-search-container').css('transform', 'scale(1)');
     $('#overlay-search-input').focus();
 });
-$('#overlay-search-close').on('click', function(){
+$('#overlay-search-close').on('click', closeSearch);
+
+function closeSearch() {
     $('#overlay-search-container').css('transform', 'scale(0)');
     $('#overlay-search-input').val('');
     $('#overlay-search-results').empty();
-});
+}
 
 function search(e) {
     let artist = $(this).val().trim();
     $.ajax({
         method: 'POST',
         url: '/search?q=' + artist,
-    }).then(function (data) {
-
-        console.log(data);
-        let ulist = $('#overlay-search-results');
-
-        $(ulist).empty();
-
-        for (var index = 0; index < data.artists.items.length; index++) {
-            var element = data.artists.items[index];
-            var artist = element.name;
-            var artistLink = element.external_urls.spotify;
-            var li = $('<li>');
-            var link = $('<a>');
-            $(link).text(artist);
-            $(link).attr('href', artistLink);
-            $(link).appendTo(li);
-            $(li).appendTo(ulist);
-        }      
+    }).then(function (html) {
+        $('#overlay-search-results').html(html);   
     });
 }
 
-$('#overlay-search-input').on('keydown', _.debounce(search, 700));
+function populateInfo(e) {
+    e.preventDefault();
+    let artist = ($(this).text());
+    let id = ($(this).attr('artistid'));
+
+// EVENTS
+    $.ajax({
+        method: 'POST',
+        url: '/events?q=' + artist
+    }).then(function(data) {
+        console.log(data);
+        let date = moment(data[0].date)
+
+        let month = date.format('MMM')
+        let day = date.format('D')
+        let year = date.format('YYYY')
+
+        console.log(`
+        ${month}
+        ${day}
+        ${year}
+        `)
+    });
+
+// ARTIST BIO
+    $.ajax({
+        method: 'POST',
+        url: '/artist?q=' + artist
+    }).then(function(html) {
+        $('#information').html(html);
+    });
+
+// RELATED ARTISTS
+    $.ajax({
+        method: 'POST',
+        url: '/related_artists?q=' + id
+    }).then(function(data) {
+        console.log(data);
+    });
+
+// TOP TRACKS
+    $.ajax({
+        method: 'POST',
+        url: '/top_tracks?q=' + id
+    }).then(function(data) {
+        console.log(data);
+    });
+
+// ALBUMS
+    $.ajax({
+        method: 'POST',
+        url: '/albums?q=' + id
+    }).then(function(data) {
+        console.log(data);
+    });
+
+    closeSearch();
+}
+
+
+$('#overlay-search-input').on('keydown', _.debounce(search, 200));
+$(document).on('click', '.search-results', _.debounce(populateInfo, 1));
 
 
 //AJAX USING FETCH API

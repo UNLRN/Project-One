@@ -1,14 +1,15 @@
 #artist-container
     // height: 100vh
-    background-color: darken($dark, 5%)
+    background-color: $darkblack
     padding: 0
+    border: 1px solid lighten($black, 5%)
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
 
 #artist-header
     height: 150px
     padding: 10px 0
-    background-color: lighten($dark, 2%)
-    border: 1px solid $dark
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
+    background-color: $black
     .img-wrapper
         display: inline-block
         height: 100%
@@ -36,7 +37,7 @@
 #artist-tabs
     padding: 0
     ul
-        background-color: lighten($dark, 5%)
+        background-color: $darkblack
     li
         a
             font-weight: bold
@@ -44,10 +45,16 @@
             color: $white
             text-decoration: none
         a:hover
-            color: $blue
+            color: $green
         
 
 .indicator
-    background-color: $blue !important
+    background-color: $green !important
 .active
-    color: $blue !important
+    color: $green !important
+
+p
+    color: $white
+
+#information, #top-tracks, #discography, #events
+    background-color: $black
