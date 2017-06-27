@@ -16,6 +16,9 @@ $.ajax({
         eventLoc.push(locObj);
     }
 }).then(function () {
+
+});
+
     function initMap() {
         var chicago = {lat: 41.85, lng: -87.65};
         var indianapolis = {lat: 39.79, lng: -86.14};
@@ -48,4 +51,3 @@ $.ajax({
           }
         });
       }
-});

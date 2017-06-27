@@ -5,10 +5,6 @@
     <meta charset="UTF-8">
     <title>BandStalker</title>
 
-    <!--Mapbox-->
-    <!--<link href='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css' rel='stylesheet' />-->
-    <!--Mapbox GL-->
-    <!--<script src='https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>-->
     <!--Font Awesome-->
     <link rel="stylesheet" href="stylesheets/css/libs/font-awesome/css/font-awesome.min.css">
     <!-- Bootstrap -->
@@ -21,26 +17,22 @@
 </head>
 
 <body>
-    <div class="row nav-row">
-        <nav>
-            <div class="nav-wrapper valign-wrapper">
-                <a href="#" id="logo">Bandstalker</a>
-                <div class="img-wrapper">
-                    <img src="images/002-people.png" alt="">
-                    <img src="images/001-minivan.png" alt="">
-                </div>
-                <div class="col m2 right hide-on-small-only" id="search-container">
-                    <form id=search-form>
-                        <input id="search" type="text" name="search" value="Search...">
-                    </form>
-                </div>
-            </div>
-        </nav>
-    </div>
+    <nav class="navbar">
+        <div class="nav-container">
+            <!--Navbar Brand-->
+            <a class="navbar-brand" href="#">Bandstalker</a>
+            <a href="#" class="navbar-login pull-right">Sign In</a>
+            <!--Search form-->
+            <form class="form-inline pull-right">
+                <input id="search" type="text" placeholder="Search">
+            </form>
+
+        </div>
+    </nav>
     <div class="content-row">
         <!--Artist Content-->
         <div class="col s12 m6" id="artist-container">
-            <div class="row artist-header-row">
+            <div class="row artist-row">
                 <div class="col s12" id="artist-header">
                     <div class="img-wrapper left">
                         <img src="images/avatar.png" alt="" id="avatar" class="responsive-img">
@@ -56,7 +48,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row artist-row">
                 <div class="col s12" id="artist-tabs">
                     <ul class="tabs">
                         <li class="tab col s3"><a href="#information" class="active">Information</a></li>
@@ -66,7 +58,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="row">
+            <div class="row artist-row">
                 <div class="col s12" id="information">
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores ipsum perferendis quae ipsa voluptate dolorem repellat
@@ -115,12 +107,6 @@
 
 
 
-
-
-
-
-
-
     <!--Search Overlay-->
     <div id="overlay-search-container">
         <div class="overlay-content">
@@ -138,12 +124,9 @@
 
 
 
-    <!--Mapbox-->
-    <!--<script src='https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js'></script>-->
-    <!--Mapbox GL-->
-    <!--<link href='https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css' rel='stylesheet' />-->
     <!--Google Maps-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKiV0NAdFYgjEssNO-8Dtk0BXCex91eA8&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKiV0NAdFYgjEssNO-8Dtk0BXCex91eA8&callback=initMap" async
+        defer></script>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!-- lodash -->
@@ -153,8 +136,9 @@
         crossorigin="anonymous"></script>-->
     <!-- Materialize -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <!--Moment.js-->
+    <script src="javascripts/libs/moment.js"></script>
     <!-- JavaScript -->
-    <!--<script src="assets/javascript/app.js"></script>-->
     <script src="javascripts/search.js"></script>
     <script src="javascripts/map.js"></script>
 </body>

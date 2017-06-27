@@ -8,6 +8,11 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var search = require('./routes/search');
+var artist = require('./routes/artist');
+var albums = require('./routes/albums');
+var related_artists = require('./routes/related_artists');
+var top_tracks = require('./routes/top_tracks');
+var events = require('./routes/events');
 
 var app = express();
 
@@ -26,6 +31,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/search', search);
+app.use('/artist', artist);
+app.use('/albums', albums);
+app.use('/related_artists', related_artists);
+app.use('/top_tracks', top_tracks);
+app.use('/events', events);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

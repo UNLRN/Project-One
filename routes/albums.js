@@ -2,13 +2,8 @@ const express = require('express');
 const router = express.Router();
 const request = require('request');
 
-
-router.get('/', function(req, res, next) {
-  res.render('search');
-});
-
-router.post('/', function (req, res, next) {
-    const band = req.param('q');
+router.post('/', function(req, res, next) {
+    const artistID = req.param('q');
 
 
     var client_id = '8f01408378c5438096f5f11e50a9d395';
@@ -26,28 +21,39 @@ router.post('/', function (req, res, next) {
         json: true
     };
 
-    request.post(authOptions, function (error, response, body) {
+    request.post(authOptions, function(error, response, body) {
         if (!error && response.statusCode === 200) {
 
             // use the access token to access the Spotify Web API
             var token = body.access_token;
-            
+
+            // albums
             var options = {
-                url: 'https://api.spotify.com/v1/search?q='+band+'*&type=artist',
+                url: 'https://api.spotify.com/v1/artists/' + artistID + '/albums',
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
                 json: true
             };
-            request.get(options, function (error, response, body) {
-                let html = "";
-                for (var index = 0; index < body.artists.items.length; index++) {
-                    var element = body.artists.items[index];
-                    let artist = element.name;
-                    let id = element.id;
-                    html += `<li><a href="#" class="search-results" artistid="${id}">${artist}</a></li>`;
+            request.get(options, function(error, response, body) {
+
+                var resObj = [];
+
+                for (var i = 0; i < body.items.length; i++) {
+                    var albumName = body.items[i].name;
+                    var albumURL = body.items[i].external_urls.spotify;
+                    var albumImage = body.items[i].images;
+
+                    var temp = {
+                        album: albumName,
+                        image: albumImage,
+                        url: albumURL
+                    }
+
+                    resObj.push(temp);
                 }
-                res.send(html);
+
+                res.send(resObj);
             });
         }
     });
