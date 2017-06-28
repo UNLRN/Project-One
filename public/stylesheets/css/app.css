@@ -7325,7 +7325,8 @@ body, html {
       font-size: 128px; }
   #artist-header #artist-name {
     display: table-cell;
-    vertical-align: middle; }
+    vertical-align: middle;
+    padding: 0 10px; }
     #artist-header #artist-name h4 {
       text-transform: uppercase;
       letter-spacing: 2px; }

@@ -1,3 +1,5 @@
+"use strict";
+
 //search overlay
 $('#search').on('focus', function(){
     $('#overlay-search-container').css('transform', 'scale(1)');
@@ -60,6 +62,40 @@ function populateInfo(e) {
         // ${year}
         // `)
     });
+
+// ARTIST
+    $.ajax({
+        method: 'POST',
+        url: '/artist/?q=' + id
+    }).then(function(data) {
+        let html = `
+            <h4>${data.name}</h4>
+            <ul>
+                <li>${data.genres[0]}</li>
+                <li>${data.genres[1]}</li>
+                <li>${data.genres[2]}</li>
+            </ul>` 
+        $('#artist-name').html(html);
+
+        if (data.images.length == 3) {
+            let imgURL = data.images[2].url;
+            let avatar = `<img src="${imgURL}" alt="" id="avatar" class="responsive-img">`;
+            $("#artist-image").html(avatar);
+        } else if (data.images.length == 2) {
+            let imgURL = data.images[1].url;
+            let avatar = `<img src="${imgURL}" alt="" id="avatar" class="responsive-img">`;
+            $("#artist-image").html(avatar);
+        } else if (data.images.length == 1) {
+            let imgURL = data.images[0].url;
+            let avatar = `<img src="${imgURL}" alt="" id="avatar" class="responsive-img">`;
+            $("#artist-image").html(avatar);
+        } else {
+            let avatar = `<i class="fa fa-user-circle" aria-hidden="true"></i>`
+            $("artist-image").html(avatar);
+        }
+
+    });
+
 
 // ARTIST BIO
     $.ajax({
