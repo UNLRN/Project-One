@@ -1,5 +1,76 @@
+#main
+    -webkit-transition: top .3s cubic-bezier(.4,0,.2,1)
+    -o-transition: top .3s cubic-bezier(.4,0,.2,1)
+    transition: top .3s cubic-bezier(.4,0,.2,1)
+    position: fixed
+    top: 100%
+    width: 100%
+    height: auto !important
+    min-height: 100%
+    margin-top: 50px
+    z-index: 4
+    overflow: hidden
+    background-color: #fff
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.25)
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.25)
+    @media(min-width: 992px) 
+        -webkit-transform:translate3d(0,0,0)
+        transform: translate3d(0,0,0)
+        -webkit-transition: left .3s cubic-bezier(.4,0,.2,1)
+        -o-transition: left .3s cubic-bezier(.4,0,.2,1)
+        transition: left .3s cubic-bezier(.4,0,.2,1)
+        position: absolute
+        top: 0!important
+        bottom: 0
+        left: 0
+        width: 50%
+        height: 100%
+        min-height: 100%
+        margin: 0
+        padding: 0
+        z-index: 2
+        overflow: hidden
+  
+#main
+    .in
+        position: absolute
+        top: 0
+        margin-top: 0
+        text-align: center
+
+.artist-toggle
+    position: fixed
+    bottom: 0px
+    right: 0px
+    left: 0px
+    background-color: rgb(51, 51, 51)
+    box-shadow: rgba(0, 0, 0, 0.75) 0px 2px 6px 0px
+    display: flex
+    box-sizing: border-box
+    z-index: 5
+  
+.toggle-button
+    background-color: rgb(255, 255, 255)
+    border-width: 0px
+    border-style: none
+    box-sizing: border-box
+    display: block
+    position: relative
+    height: 60px
+    padding: 10px 20px
+    align-items: flex-start
+    outline-style: none
+    outline-width: 0px
+    cursor: pointer
+    flex-grow: 1
+
+
+
+
+
+
 #artist-container
-    // height: 100vh
+    height: 100vh
     background-color: $darkblack
     padding: 0
     border: 1px solid lighten($black, 5%)
@@ -62,6 +133,7 @@ p
 
 #information, #top-tracks, #discography, #events
     background-color: $black
+    height: 100vh
 
 #information
     p

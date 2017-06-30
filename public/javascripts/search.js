@@ -1,4 +1,5 @@
 "use strict";
+let eventMarkers = [];
 
 //search overlay
 $('#search').on('focus', function(){
@@ -13,41 +14,58 @@ function closeSearch() {
     $('#overlay-search-results').empty();
 }
 
-function search(e) {
+function search() {
     let artist = $(this).val().trim();
     $.ajax({
         method: 'POST',
-        url: '/search?q=' + artist,
+        url: `/search?q=${artist}`,
     }).then(function (html) {
         $('#overlay-search-results').html(html);   
     });
 }
 
+function clearMarkers(markerArr) {
+    if (markerArr.length > 0) {
+        for (let index = 0; index < markerArr.length; index++) {
+            markerArr[index].setMap(null);
+ 
+        }
+    }
+    markerArr = [];
+}
+
 function populateInfo(e) {
     e.preventDefault();
     closeSearch();
+    clearMarkers(eventMarkers);
     let artist = ($(this).text());
     let id = ($(this).attr('artistid'));
+    
 
 // EVENTS
     $.ajax({
         method: 'POST',
-        url: '/events?q=' + artist
+        url: `/events?q=${artist}`
     }).then(function(events) {
         console.log(events);
 
         for (let index = 0; index < events.length; index++) {
             let element = events[index];
             let latLng = new google.maps.LatLng(element.lat, element.lng);
-            let marker = new google.maps.Marker({
+            let marker = new Marker({
+                map: map,
                 position: latLng,
                 icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    scale: 10
+                    path: SQUARE_PIN,
+                    fillColor: '#ffffff',
+                    fillOpacity: 1,
+                    strokeColor: '',
+                    strokeWeight: 0
                 },
-                map: map,
+	            map_icon_label: '<span class="map-icon map-icon-label"></span>',
                 title: element.venue
             });
+            eventMarkers.push(marker);
         } 
 
         // let date = moment(data[0].date)
@@ -66,7 +84,7 @@ function populateInfo(e) {
 // ARTIST
     $.ajax({
         method: 'POST',
-        url: '/artist/?q=' + id
+        url: `/artist/${id}`
     }).then(function(data) {
         let html = `
             <h4>${data.name}</h4>
@@ -100,7 +118,7 @@ function populateInfo(e) {
 // ARTIST BIO
     $.ajax({
         method: 'POST',
-        url: '/bio?q=' + artist
+        url: `/bio?q=${artist}`
     }).then(function(html) {
         $('#information').html(html);
     });
@@ -108,7 +126,7 @@ function populateInfo(e) {
 // RELATED ARTISTS
     $.ajax({
         method: 'POST',
-        url: '/related_artists?q=' + id
+        url: `/artist/${id}/related`
     }).then(function(data) {
         console.log(data);
     });
@@ -116,7 +134,7 @@ function populateInfo(e) {
 // TOP TRACKS
     $.ajax({
         method: 'POST',
-        url: '/top_tracks?q=' + id
+        url: `/artist/${id}/tracks`
     }).then(function(data) {
         console.log(data);
     });
@@ -124,7 +142,7 @@ function populateInfo(e) {
 // ALBUMS
     $.ajax({
         method: 'POST',
-        url: '/albums?q=' + id
+        url: `/artist/${id}/albums`
     }).then(function(data) {
         console.log(data);
     });

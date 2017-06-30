@@ -7166,17 +7166,6 @@ body, html {
   font-family: 'Open Sans', sans-serif;
   color: #FFFFFF; }
 
-.content-row {
-  z-index: -1;
-  position: absolute;
-  top: 100px;
-  left: 50px;
-  width: 40%;
-  height: auto; }
-
-.artist-row {
-  margin-bottom: 0; }
-
 .navbar {
   top: 0;
   right: 0;
@@ -7290,17 +7279,82 @@ body, html {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -2;
-  height: 100vh;
-  width: 100vw;
-  border-left: 1px solid #38383c;
-  padding: 0; }
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  border-left: 1px solid #38383c; }
 
 #map {
   height: 100%;
   width: 100%; }
 
+#main {
+  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: fixed;
+  top: 100%;
+  width: 100%;
+  height: auto !important;
+  min-height: 100%;
+  margin-top: 50px;
+  z-index: 4;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25); }
+  @media (min-width: 992px) {
+    #main {
+      transform: translate3d(0, 0, 0);
+      transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: absolute;
+      top: 0 !important;
+      bottom: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+      z-index: 2;
+      overflow: hidden; } }
+
+#main .in {
+  position: absolute;
+  top: 0;
+  margin-top: 0;
+  text-align: center; }
+
+.artist-toggle {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  background-color: #333333;
+  box-shadow: rgba(0, 0, 0, 0.75) 0px 2px 6px 0px;
+  display: -ms-flexbox;
+  display: flex;
+  box-sizing: border-box;
+  z-index: 5; }
+
+.toggle-button {
+  background-color: white;
+  border-width: 0px;
+  border-style: none;
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  height: 60px;
+  padding: 10px 20px;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  outline-style: none;
+  outline-width: 0px;
+  cursor: pointer;
+  -ms-flex-positive: 1;
+  flex-grow: 1; }
+
 #artist-container {
+  height: 100vh;
   background-color: #222325;
   padding: 0;
   border: 1px solid #38383c;
@@ -7360,7 +7414,8 @@ p {
   color: #FFFFFF; }
 
 #information, #top-tracks, #discography, #events {
-  background-color: #2C2C2F; }
+  background-color: #2C2C2F;
+  height: 100vh; }
 
 #information p {
   font-family: "Spectral", serif; }
