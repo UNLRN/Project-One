@@ -6441,7 +6441,7 @@ input[type=range]:focus::-ms-fill-upper {
   .tap-target-wrapper.open .tap-target-wave::after {
     visibility: visible;
     animation: pulse-animation 1s cubic-bezier(0.24, 0, 0.38, 1) infinite;
-    transition: opacity .3s, transform .3s, visibility 0s 1s; }
+    transition: opacity .3s, transform .3s, visibility 0s 1s; }
 
 .tap-target {
   position: absolute;
@@ -6476,7 +6476,7 @@ input[type=range]:focus::-ms-fill-upper {
     transition: transform .3s; }
   .tap-target-wave::after {
     visibility: hidden;
-    transition: opacity .3s, transform .3s, visibility 0s;
+    transition: opacity .3s, transform .3s, visibility 0s;
     z-index: -1; }
 
 .tap-target-origin {
@@ -7171,8 +7171,8 @@ body, html {
   right: 0;
   left: 0;
   position: fixed;
-  height: 64px;
-  z-index: 9999;
+  height: 65px;
+  z-index: 10;
   background-color: #2C2C2F;
   border-bottom: 1px solid #38383c;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2); }
@@ -7318,26 +7318,29 @@ body, html {
       z-index: 2;
       overflow: hidden; } }
 
-#main .in {
+#main.in {
   position: absolute;
-  top: 0;
+  top: 125px;
   margin-top: 0;
   text-align: center; }
 
 .artist-toggle {
-  position: fixed;
-  bottom: 0px;
-  right: 0px;
-  left: 0px;
-  background-color: #333333;
-  box-shadow: rgba(0, 0, 0, 0.75) 0px 2px 6px 0px;
-  display: -ms-flexbox;
-  display: flex;
-  box-sizing: border-box;
-  z-index: 5; }
+  visibility: hidden; }
+  @media (max-width: 991px) {
+    .artist-toggle {
+      visibility: visible;
+      position: fixed;
+      top: 65px;
+      right: 0px;
+      left: 0px;
+      box-shadow: rgba(0, 0, 0, 0.75) 0px 2px 6px 0px;
+      display: -ms-flexbox;
+      display: flex;
+      box-sizing: border-box;
+      z-index: 5; } }
 
 .toggle-button {
-  background-color: white;
+  background-color: #222325;
   border-width: 0px;
   border-style: none;
   box-sizing: border-box;
@@ -7352,9 +7355,18 @@ body, html {
   cursor: pointer;
   -ms-flex-positive: 1;
   flex-grow: 1; }
+  .toggle-button:focus {
+    background-color: #222325; }
+  .toggle-button:hover {
+    background-color: #ff662b;
+    color: #FFFFFF; }
+  .toggle-button.on {
+    background-color: #ff662b;
+    color: #FFFFFF; }
 
 #artist-container {
   height: 100vh;
+  width: 100%;
   background-color: #222325;
   padding: 0;
   border: 1px solid #38383c;
