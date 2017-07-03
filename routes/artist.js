@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const request = require('request');
+const moment = require('moment');
 
 
 router.get('/', function (req, res) {
-    res.render('search');
+    res.render('artist');
 });
 
 router.post('/', function (req, res, next) {
@@ -76,20 +77,46 @@ router.post('/events', function (req, res) {
     };
     request.get(options, function (error, response, body) {
         let events = [];
+        let html = "";
         for (let index = 0; index < body.length; index++) {
-            let date = body[index].datetime;
+            let date = moment(body[index].datetime);
             let element = body[index].venue;
+            let venue = element.name;
+            let city = element.city;
+            let region = element.region;
+            let country = element.country;
+            let latitude = element.latitude;
+            let longitude = element.longitude;
+            let url = body[index].url;
+            let month = date.format('MMM')
+            let day = date.format('D')
+            
             events.push({
-                date: date,
-                venue: element.name,
-                city: element.city,
-                region: element.region,
-                country: element.country,
-                lat: element.latitude,
-                lng: element.longitude
+                venue: venue,
+                lat: latitude,
+                lng: longitude
             });
+
+            html += `<div class="event">
+                        <div class="date">
+                            <span class="month">${month}</span>
+                            <span class="day">${day}</span>
+                        </div>
+                        <div class="location">
+                            <span class="venue">${venue}</span>
+                            <span class="city">${city} ${region} ${country}</span>
+                        </div>
+                        <div class="ticket">
+                            <a href="${url}">tickets</a>
+                        </div>
+                    </div>`;
         }
-        res.send(events);
+        let data = {
+            events: events,
+            html: html
+        }
+
+        res.send(data);
     });
 });
 
@@ -282,21 +309,32 @@ router.post('/:id/tracks', function (req, res) {
             };
             request.get(options, function (error, response, body) {
 
-                let resObj = [];
-
+                let html = "";
                 for (let i = 0; i < body.tracks.length; i++) {
-                    let topTrackName = body.tracks[i].name;
-                    let topTrackURL = body.tracks[i].external_urls.spotify;
-
-                    let temp = {
-                        track: topTrackName,
-                        url: topTrackURL
-                    }
-
-                    resObj.push(temp);
+                    let uri = body.tracks[i].uri;
+                    html += `<iframe src="https://open.spotify.com/embed?uri=${uri}" width="100%" height="80" frameborder="0" allowtransparency="true" id="iframe"></iframe>`;
                 }
 
-                res.send(resObj);
+                res.send(html);
+
+
+                // let resObj = [];
+
+                // for (let i = 0; i < body.tracks.length; i++) {
+                //     let topTrackName = body.tracks[i].name;
+                //     let topTrackURL = body.tracks[i].external_urls.spotify;
+                //     let topTrackURI = body.tracks[i].uri;
+
+                //     let temp = {
+                //         track: topTrackName,
+                //         url: topTrackURL,
+                //         uri: topTrackURI
+                //     }
+
+                //     resObj.push(temp);
+                // }
+
+                // res.send(resObj);
             });
         }
     });

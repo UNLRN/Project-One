@@ -1,0 +1,65 @@
+.tabs-container
+  position: relative
+  background-color: $darkblack
+
+.tabs
+  background-color: $darkblack
+  list-style-type: none
+  height: 48px
+  margin: 0
+  padding: 10px 0
+  .tab
+    vertical-align: middle
+    cursor: pointer
+    display: inline-block
+    background-color: $darkblack
+    text-align: center
+    line-height: 48px
+    height: 48px
+    padding: 0
+    margin: 0
+    text-transform: uppercase
+    transition: all .28s ease
+  a
+    vertical-align: middle
+    letter-spacing: 1px
+    color: $white
+    text-decoration: none           
+  a:hover, a:focus
+    color: $orange
+    text-decoration: none
+  *
+    font-size: 12px
+  
+.tab 
+  span
+    font-size: 16px
+    vertical-align: middle
+    display: none
+
+.tab
+  span.visible
+    display: inline
+
+.tab
+  img
+    vertical-align: middle
+    margin: 0 10px
+    height: 36px
+
+.panels
+  background-color: $black
+  height: auto
+  padding: 15px
+  display: none
+  p
+    font-weight: 300
+    font-size: 16px
+  
+.panels.visible
+  display: block
+
+#tracks
+  padding: 0
+
+
