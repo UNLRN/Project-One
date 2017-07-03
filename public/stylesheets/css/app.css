@@ -1406,7 +1406,7 @@ a {
     z-index: 0;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1100px) {
     #map-container {
         left: 0;
     }
