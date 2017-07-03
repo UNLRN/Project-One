@@ -2,6 +2,11 @@
 ###########
 node_modules
 
+# Environment Variables #
+######################
+*.env
+.env
+
 # Compiled source #
 ###################
 *.com
