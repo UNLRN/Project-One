@@ -1,0 +1,84 @@
+#events
+    margin: 0
+    padding: 0
+
+#event-container
+  position: relative
+  height: 100%
+  width: 100%
+  margin: 0 auto
+  border: 1px solid lighten(#222325, 10%)
+  
+.event
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  align-items: center
+  background-color: #2C2C2F
+  width: 100%
+  border-top: 1px solid lighten(#222325, 10%)
+  border-bottom: 1px solid #222325
+  &:first-child
+    border-top: none
+  &:last-child
+    border-bottom: none
+  
+.date
+  display: flex
+  flex-direction: column
+  margin: 10px
+  text-align: center
+  box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.75)
+  
+.date span
+  display: block
+  padding: 10px
+  color: darken(#fff, 10%)
+  
+.month
+  font-weight: bold
+  background-color: #ff662b
+
+.day
+  font-weight: bold
+  background-color: #222325
+
+.location
+  display: flex
+  flex-direction: column
+  vertical-align: middle
+  text-align: left
+  width: 100%
+  padding: 10px
+  
+.location span
+  display: block
+
+.venue
+  font-size: 24px
+
+.city
+  font-size: 12px
+  color: darken(#fff, 10%)
+  
+.ticket
+  display: flex
+  flex-direction: column
+  margin: 10px
+  align-items: center
+  
+.ticket a
+  text-align: center
+  line-height: 50px
+  display: flex
+  flex-direction: column
+  width: 100px
+  height: 50px
+  background-color: #ff662b
+  border: 2px solid lighten(#ff662b, 5%)
+  box-shadow: 1px 1px 3px 0px rgba(0, 0, 0, .75)
+  text-transform: uppercase
+  cursor: pointer
+  color: darken(#fff, 10%)
+  text-decoration: none
+

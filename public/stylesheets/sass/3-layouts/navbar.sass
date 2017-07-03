@@ -1,42 +1,10 @@
-// nav
-//     background-color: lighten($dark, 5%)
-
-// #logo
-//     font-size: 40px
-//     padding: 0 15px
-//     letter-spacing: 5px
-
-// .nav-wrapper
-//     img
-//         padding-left: 15px
-//         padding-right: 100px !important
-//         height: 40px
-
-// nav
-//     form
-//         display: inline-block
-
-// /*search*/
-// #search
-//     background: $dark
-//     height: 45px
-//     padding: 0 10px
-//     color: #eee
-//     outline: none
-//     border: none
-//     box-sizing: border-box
-
-// #search-container
-//     height: 64px
-//     float: right
-
 .navbar 
     top: 0
     right: 0
     left: 0
     position: fixed
-    height: 64px
-    z-index: 9999
+    height: 65px
+    z-index: 10
     background-color: $black
     border-bottom: 1px solid lighten($black, 5%)
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
@@ -46,6 +14,12 @@
     float: left
     line-height: 64px
     margin: 0 10px
+    text-decoration: none
+    color: $white
+    font-family: $heading
+    letter-spacing: 5px
+    font-size: 36px
+    margin-left: 15px
 
 .navbar-login
     margin: 0 20px
@@ -57,21 +31,35 @@
     line-height: 64px
     margin: 0 10px
 
-
 .pull-right 
     float: right !important
-
-
 
 #search
     background: $darkblack
     height: 45px
-    padding: 0 10px
-    color: #eee
+    width: 150px
+    padding: 0 40px
     outline: none
     border: none
     box-sizing: border-box
+    @media(max-width: 520px) 
+        cursor: pointer
+        padding: 0
+        width: 45px
+        &::placeholder
+            opacity: 0
 
+#search-container
+    position: relative
+
+.fa-search
+    position: relative
+    left: 35px
+    line-height: 45px
+    color: darken($white, 50%)
+    @media(max-width: 520px) 
+        left: 50%
+        cursor: pointer
 
 /*overlay search*/
 #overlay-search-container 
@@ -104,6 +92,7 @@
 
 #overlay-search-text 
     float: left
+    text-transform: uppercase
 
 
 #overlay-search-close 
@@ -117,7 +106,7 @@
     margin: 10px auto
 
 
-#overlay-search-input 
+#overlay-search-input
     width: 100%
     height: 50px
     border: none
@@ -126,15 +115,16 @@
     font-size: 32px
     box-sizing: border-box
     padding-left: 10px
+    background-color: rgba(0, 0, 0, 0.01)
     &:focus
         border-bottom: 1px solid $orange
-        box-shadow: 0 1px 0 0 darken($orange, 15%)
-    
-
+        box-shadow: 0 1px 0 0 darken($orange, 15%)  
 
 #overlay-search-results 
     width: 80%
-    margin: 0 auto
+    margin: 10px auto
+    padding: 0
+    padding-left: 20px
     list-style: none
 
 

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BandStalker</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/css/app.css">
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="stylesheets/css/libs/font-awesome/css/font-awesome.min.css">
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500|Open+Sans:300,400" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <!--Navbar Brand-->
+            <a class="navbar-brand" href="#">Bandstalker</a>
+            <!--<a href="#" class="navbar-login pull-right">Sign In</a>-->
+            <!--Search form-->
+            <div class="form-inline pull-right">
+                <div id="search-container">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input id="search" type="text" placeholder="Search">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id='main'>
+        <div id="artist-header">
+            <div class="img-wrapper left" id="artist-image">
+            </div>
+            <div id="artist-name">
+            </div>
+        </div>
+        <div class="tabs-container">
+            <ul class="tabs">
+                <li class="col-xs-6 tab current"><img src="./images/bio.svg" alt=""><a href="#bio"><span class='visible'>Bio</span></a></li>
+                <li class="col-xs-2 tab"><img src="./images/tracks.svg" alt=""><a href="#tracks"><span>Top Tracks</span></a></li>
+                <li class="col-xs-2 tab"><img src="./images/albums.svg" alt=""><a href="#albums"><span>Albums</span></a></li>
+                <li class="col-xs-2 tab"><img src="./images/events.svg" alt=""><a href="#events"><span>Events</span></a></li>
+            </ul>
+        </div>
+        <div id="artist-info">
+            <div id="bio" class="panels visible">
+            </div>
+            <div id="tracks" class="panels">
+            </div>
+            <div id="albums" class="panels">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, aut fugiat dolorum necessitatibus, maxime
+                    expedita eaque quidem corrupti alias quos animi hic tenetur recusandae voluptas! Illum praesentium sapiente
+                    iure eaque qui suscipit debitis dignissimos deserunt minima magni amet, explicabo odio nulla tempore
+                    necessitatibus, hic error molestias! Velit ab, sed non.</p>
+            </div>
+            <div id="events" class="panels">
+                <div id="event-container">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="artist-toggle">
+        <button class="toggle-button"><span>View Artist Info</span></button>
+    </div>
+
+
+    <!--Map Content-->
+    <div id="map-container">
+        <div id='map'></div>
+    </div>
+
+
+
+    <!--Search Overlay-->
+    <div id="overlay-search-container">
+        <div class="overlay-content">
+            <div id="overlay-search-header">
+                <span id="overlay-search-text">Search</span>
+                <span id="overlay-search-close"><i class="fa fa-times" aria-hidden="true"></i></span>
+            </div>
+            <div id="overlay-search">
+                <input id="overlay-search-input" type="text">
+            </div>
+            <ul id="overlay-search-results">
+            </ul>
+        </div>
+    </div>
+
+
+
+    <!--Google Maps-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKiV0NAdFYgjEssNO-8Dtk0BXCex91eA8"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- lodash -->
+    <script type="text/javascript" src="javascripts/libs/lodash.custom.min.js"></script>
+    <!--Moment.js-->
+    <script src="javascripts/libs/moment.js"></script>
+    <!-- JavaScript -->
+    <!--<script src="javascripts/search.js"></script>-->
+    <script src="javascripts/map.js"></script>
+    <script src="javascripts/tabs.js"></script>
+    <script src="javascripts/main.js"></script>
+</body>
+
+</html>

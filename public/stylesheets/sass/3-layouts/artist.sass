@@ -1,20 +1,92 @@
-#artist-container
-    // height: 100vh
+#main
+    -webkit-transition: top .3s cubic-bezier(.4,0,.2,1)
+    -o-transition: top .3s cubic-bezier(.4,0,.2,1)
+    transition: top .3s cubic-bezier(.4,0,.2,1)
+    position: fixed
+    top: 100%
+    bottom: 0
+    width: 100%
+    height: auto !important
+    margin-top: 65px !important
+    z-index: 4
+    overflow-x: hidden
+    background-color: $black
+    -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.25)
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.25)
+    @media(min-width: 1100px) 
+        -webkit-transform:translate3d(0,0,0)
+        transform: translate3d(0,0,0)
+        -webkit-transition: left .3s cubic-bezier(.4,0,.2,1)
+        -o-transition: left .3s cubic-bezier(.4,0,.2,1)
+        transition: left .3s cubic-bezier(.4,0,.2,1)
+        position: absolute
+        top: 0 !important
+        bottom: 0
+        left: 0
+        width: 40%
+        height: 100%
+        margin: 0
+        padding: 0
+        z-index: 2
+        border-right: 1px solid lighten($black, 5%)
+  
+#main.in
+    position: absolute
+    top: 60px
+    margin-top: 0
+
+.artist-toggle
+    visibility: hidden
+    @media(max-width: 1099px)
+        visibility: visible
+        position: fixed
+        top: 65px
+        right: 0px
+        left: 0px
+        box-shadow: rgba(0, 0, 0, 0.75) 0px 2px 6px 0px
+        display: flex
+        box-sizing: border-box
+        z-index: 5
+  
+.toggle-button
     background-color: $darkblack
-    padding: 0
-    border: 1px solid lighten($black, 5%)
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
+    color: $white
+    text-transform: uppercase
+    letter-spacing: 2px
+    border-width: 0px
+    border-style: none
+    box-sizing: border-box
+    display: block
+    position: relative
+    height: 60px
+    padding: 10px 20px
+    align-items: flex-start
+    outline-style: none
+    outline-width: 0px
+    cursor: pointer
+    flex-grow: 1
+    &:focus
+        background-color: $darkblack
+    &:hover
+        background-color: $orange
+        color: $white
+    &.on
+        background-color: $orange
+        color: $white 
 
 #artist-header
-    display: table
+    position: relative
+    width: 100%
     height: 150px
-    padding: 10px 0
+    padding: 10px
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
     background-color: $black
     .img-wrapper
+        vertical-align: middle
         display: table-cell
         margin: 0 10px
         img
+            vertical-align: middle
             margin: 5px
             padding: 5px
             height: 128px
@@ -25,11 +97,19 @@
     #artist-name
         display: table-cell
         vertical-align: middle
+        padding: 0 10px
         h4
+            word-break: break-all
+            color: $white
+            margin: 15px 0
             text-transform: uppercase
             letter-spacing: 2px
         ul
+            margin: 15px 0
+            padding: 0
             li
+                color: 
+                font-size: 14px
                 display: inline-block
                 letter-spacing: 1px
             li:after
@@ -37,31 +117,9 @@
             li:last-child:after
                 content: " "
 
-#artist-tabs
-    padding: 0
-    ul
-        background-color: $darkblack
-    li
-        a
-            font-weight: bold
-            letter-spacing: 1px
-            color: $white
-            text-decoration: none
-        a:hover
-            color: $orange
-        
-
-.indicator
-    background-color: $orange !important
-.active
-    color: $orange !important
-
-p
-    color: $white
-
-#information, #top-tracks, #discography, #events
+#artist-info
+    height: auto
     background-color: $black
 
-#information
-    p
-        font-family: $secondary
+iframe
+    display: block

@@ -1,3 +1,5 @@
+"use strict";
+
 let style = [
     {
         "featureType": "all",

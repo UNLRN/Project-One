@@ -43,7 +43,7 @@ gulp.task('nodemon', function(done){
 
 gulp.task('browser-sync', ['nodemon'], function() {
 	browserSync.init(null, {
-		proxy: 'http://localhost:3000/search',
+		proxy: 'http://localhost:3000/artist',
 		port: 4000
 	});
 });
@@ -55,17 +55,5 @@ gulp.task('serve', ['browser-sync'], function() {
 	gulp.watch('./views/**/*.*').on('change', reload);
 	gulp.watch('./app.js').on('change', reload);
 });
-
-// gulp.task('serve', function () {
-// 	browserSync.init({
-// 		server: {
-// 			baseDir: './'
-// 		}
-// 	});
-
-// 	gulp.watch('./sass/*.sass', ['styles']);
-// 	gulp.watch('./assets/javascript/*.js').on('change', browserSync.reload)
-// 	gulp.watch('./**/*.html').on('change', browserSync.reload);
-// });
 
 gulp.task('default', ['styles', 'serve']);
