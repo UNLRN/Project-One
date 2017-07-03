@@ -12,8 +12,8 @@ router.post('/', function (req, res, next) {
     const artist = req.param('q');
 
 
-    let client_id = '8f01408378c5438096f5f11e50a9d395';
-    let client_secret = 'cb37a328aaa84304aefdbe043f993412';
+    let client_id = process.env.SPOTIFY_ID;
+    let client_secret = process.env.SPOTIFY_SECRET;
 
     // your application requests authorization
     let authOptions = {
@@ -56,7 +56,7 @@ router.post('/', function (req, res, next) {
 
 router.post('/bio', function (req, res) {
     const artist = req.param('q');
-    const api_key = '31a1c50e2e441abc5e49871a165bad68';
+    const api_key = process.env.LASTFM_KEY;
 
     let options = {
         url: 'https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist + '&api_key=' + api_key + '&format=json',
@@ -124,8 +124,8 @@ router.post('/:id', function (req, res) {
     const id = req.params.id;
 
 
-    const client_id = '8f01408378c5438096f5f11e50a9d395';
-    const client_secret = 'cb37a328aaa84304aefdbe043f993412';
+    const client_id = process.env.SPOTIFY_ID;
+    const client_secret = process.env.SPOTIFY_SECRET;
 
     // your application requests authorization
     let authOptions = {
@@ -163,8 +163,8 @@ router.post('/:id/related', function (req, res) {
     const artistID = req.params.id;
 
 
-    const client_id = '8f01408378c5438096f5f11e50a9d395';
-    const client_secret = 'cb37a328aaa84304aefdbe043f993412';
+    const client_id = process.env.SPOTIFY_ID;
+    const client_secret = process.env.SPOTIFY_SECRET;
 
     // your application requests authorization
     let authOptions = {
@@ -222,8 +222,8 @@ router.post('/:id/albums', function (req, res) {
     const artistID = req.params.id;
 
 
-    let client_id = '8f01408378c5438096f5f11e50a9d395';
-    let client_secret = 'cb37a328aaa84304aefdbe043f993412';
+    let client_id = process.env.SPOTIFY_ID;
+    let client_secret = process.env.SPOTIFY_SECRET;
 
     // your application requests authorization
     let authOptions = {
@@ -278,8 +278,8 @@ router.post('/:id/albums', function (req, res) {
 router.post('/:id/tracks', function (req, res) {
     const artistID = req.params.id;
 
-    let client_id = '8f01408378c5438096f5f11e50a9d395';
-    let client_secret = 'cb37a328aaa84304aefdbe043f993412';
+    let client_id = process.env.SPOTIFY_ID;
+    let client_secret = process.env.SPOTIFY_SECRET;
 
     // your application requests authorization
     let authOptions = {
@@ -316,25 +316,6 @@ router.post('/:id/tracks', function (req, res) {
                 }
 
                 res.send(html);
-
-
-                // let resObj = [];
-
-                // for (let i = 0; i < body.tracks.length; i++) {
-                //     let topTrackName = body.tracks[i].name;
-                //     let topTrackURL = body.tracks[i].external_urls.spotify;
-                //     let topTrackURI = body.tracks[i].uri;
-
-                //     let temp = {
-                //         track: topTrackName,
-                //         url: topTrackURL,
-                //         uri: topTrackURI
-                //     }
-
-                //     resObj.push(temp);
-                // }
-
-                // res.send(resObj);
             });
         }
     });
