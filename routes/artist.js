@@ -76,6 +76,7 @@ router.post('/events', function (req, res) {
         json: true
     };
     request.get(options, function (error, response, body) {
+        let eventData = [];
         let events = [];
         let html = "";
         for (let index = 0; index < body.length; index++) {
@@ -90,11 +91,30 @@ router.post('/events', function (req, res) {
             let url = body[index].url;
             let month = date.format('MMM')
             let day = date.format('D')
-            
+            let info = `
+            <div id="infowindow">
+                <h3>${artist}</h3>
+                <div id="content">
+                    <div class="date">
+                        <span class="month">${month}</span>
+                        <span class="day">${day}</span>
+                    </div>
+                    <div class="location">
+                        <span class="venue">${venue}</span>
+                        <span class="city">${city} ${region} ${country}</span>
+                    </div>
+                    <div class="ticket">
+                        <a href="${url}">tickets</a>
+                    </div>
+                </div>
+            </div>
+            `;
+
             events.push({
                 venue: venue,
                 lat: latitude,
-                lng: longitude
+                lng: longitude,
+                info: info
             });
 
             html += `<div class="event">

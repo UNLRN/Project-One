@@ -138,6 +138,12 @@ bandstalker.prototype.artistEvents = function (e) {
 
         for (let index = 0; index < data.events.length; index++) {
             let element = data.events[index];
+
+            let infowindow = new google.maps.InfoWindow({
+                content: element.info,
+                maxWidth: 200
+            });
+
             let latLng = new google.maps.LatLng(element.lat, element.lng);
             let marker = new google.maps.Marker({
                 map: map,
@@ -145,6 +151,11 @@ bandstalker.prototype.artistEvents = function (e) {
                 icon: image,
                 title: element.venue
             });
+            
+            marker.addListener('click', function() {
+                infowindow.open(map, marker);
+            });
+
             $this.eventMarkers.push(marker);
         } 
         $this.events.html(data.html)
