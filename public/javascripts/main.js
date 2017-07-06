@@ -3,6 +3,9 @@
 function bandstalker() {
 
     this.eventMarkers = [];
+    this.infowindow = new google.maps.InfoWindow({
+        maxWidth: 200
+    });
 
     this.document = $(document);
 
@@ -66,9 +69,10 @@ bandstalker.prototype.artistBio = function (e) {
     e.preventDefault();
     let $this = this;
     let artist = e.target.text;
+    let id = $(e.target).attr('artistid');
     $.ajax({
         method: 'POST',
-        url: `/artist/bio?q=${artist}`
+        url: `/artist/${id}/bio?q=${artist}`
     }).then(function(html) {
         $this.bio.html(html);
     });
@@ -82,28 +86,29 @@ bandstalker.prototype.artistInfo = function (e) {
         method: 'POST',
         url: `/artist/${id}`
     }).then(function(data) {
+        
         let html = `
             <h4>${data.name}</h4>
             <ul>
-                <li>${data.genres[0]}</li>
-                <li>${data.genres[1]}</li>
-                <li>${data.genres[2]}</li>
-            </ul>` 
+                ${data.genres[0] ? `<li>${data.genres[0]}</li>` : ``}
+                ${data.genres[1] ? `<li>${data.genres[1]}</li>` : ``}
+                ${data.genres[2] ? `<li>${data.genres[2]}</li>` : ``}
+            </ul>`;
         $('#artist-name').html(html);
 
-        if (data.images.length == 3) {
+        if (data.images.length >= 3) {
             let imgURL = data.images[2].url;
             let avatar = `<img src="${imgURL}" alt="" id="avatar" class="responsive-img">`;
             $("#artist-image").html(avatar);
-        } else if (data.images.length == 2) {
+        } else if (data.images.length >= 2) {
             let imgURL = data.images[1].url;
             let avatar = `<img src="${imgURL}" alt="" id="avatar" class="responsive-img">`;
             $("#artist-image").html(avatar);
-        } else if (data.images.length == 1) {
+        } else if (data.images.length >= 1) {
             let imgURL = data.images[0].url;
             let avatar = `<img src="${imgURL}" alt="" id="avatar" class="responsive-img">`;
             $("#artist-image").html(avatar);
-        } else {
+        } else if (data.images.length == 0) {
             let avatar = `<i class="fa fa-user-circle" aria-hidden="true"></i>`
             $("artist-image").html(avatar);
         }
@@ -122,11 +127,12 @@ bandstalker.prototype.artistTracks = function (e) {
 }
 
 bandstalker.prototype.artistEvents = function (e) {
-    let $this = this
+    let $this = this;
     let artist = e.target.text;
+    let id = $(e.target).attr('artistid');
     $.ajax({
         method: 'POST',
-        url: `/artist/events?q=${artist}`
+        url: `/artist/${id}/events?q=${artist}`
     }).then(function(data) {
 
         let image = {
@@ -138,13 +144,21 @@ bandstalker.prototype.artistEvents = function (e) {
 
         for (let index = 0; index < data.events.length; index++) {
             let element = data.events[index];
+
             let latLng = new google.maps.LatLng(element.lat, element.lng);
             let marker = new google.maps.Marker({
                 map: map,
                 position: latLng,
                 icon: image,
-                title: element.venue
+                title: element.venue,
+                eventContent: element.info
             });
+            
+            google.maps.event.addListener(marker, 'click', function() {
+                $this.infowindow.setContent(this.eventContent);
+                $this.infowindow.open(map, this);
+            })
+
             $this.eventMarkers.push(marker);
         } 
         $this.events.html(data.html)

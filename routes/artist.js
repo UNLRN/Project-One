@@ -54,72 +54,6 @@ router.post('/', function (req, res, next) {
     });
 });
 
-router.post('/bio', function (req, res) {
-    const artist = req.param('q');
-    const api_key = process.env.LASTFM_KEY;
-
-    let options = {
-        url: 'https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist + '&api_key=' + api_key + '&format=json',
-        json: true
-    };
-    request.get(options, function (error, response, body) {
-        let html = `<p>${body.artist.bio.summary}</p>`
-        res.send(html);
-    });
-});
-
-router.post('/events', function (req, res) {
-    let artist = req.param('q');
-
-    let options = {
-        url: 'https://rest.bandsintown.com/artists/' + artist + '/events?app_id=bootcamp',
-        json: true
-    };
-    request.get(options, function (error, response, body) {
-        let events = [];
-        let html = "";
-        for (let index = 0; index < body.length; index++) {
-            let date = moment(body[index].datetime);
-            let element = body[index].venue;
-            let venue = element.name;
-            let city = element.city;
-            let region = element.region;
-            let country = element.country;
-            let latitude = element.latitude;
-            let longitude = element.longitude;
-            let url = body[index].url;
-            let month = date.format('MMM')
-            let day = date.format('D')
-            
-            events.push({
-                venue: venue,
-                lat: latitude,
-                lng: longitude
-            });
-
-            html += `<div class="event">
-                        <div class="date">
-                            <span class="month">${month}</span>
-                            <span class="day">${day}</span>
-                        </div>
-                        <div class="location">
-                            <span class="venue">${venue}</span>
-                            <span class="city">${city} ${region} ${country}</span>
-                        </div>
-                        <div class="ticket">
-                            <a href="${url}">tickets</a>
-                        </div>
-                    </div>`;
-        }
-        let data = {
-            events: events,
-            html: html
-        }
-
-        res.send(data);
-    });
-});
-
 router.post('/:id', function (req, res) {
     const id = req.params.id;
 
@@ -156,6 +90,89 @@ router.post('/:id', function (req, res) {
                 res.send(body);
             });
         }
+    });
+});
+
+router.post('/:id/bio', function (req, res) {
+    const artist = req.param('q');
+    const api_key = process.env.LASTFM_KEY;
+
+    let options = {
+        url: 'https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist + '&api_key=' + api_key + '&format=json',
+        json: true
+    };
+    request.get(options, function (error, response, body) {
+        let html = `<p>${body.artist.bio.summary}</p>`
+        res.send(html);
+    });
+});
+
+router.post('/:id/events', function (req, res) {
+    let artist = req.param('q');
+
+    let options = {
+        url: 'https://rest.bandsintown.com/artists/' + artist + '/events?app_id=bootcamp',
+        json: true
+    };
+    request.get(options, function (error, response, body) {
+        let eventData = [];
+        let events = [];
+        let html = "";
+        for (let index = 0; index < body.length; index++) {
+            let date = moment(body[index].datetime);
+            let element = body[index].venue;
+            let venue = element.name;
+            let city = element.city;
+            let region = element.region;
+            let country = element.country;
+            let latitude = element.latitude;
+            let longitude = element.longitude;
+            let url = body[index].url;
+            let month = date.format('MMM')
+            let day = date.format('D')
+            let info = `
+            <div id="infowindow">
+                <h3>${artist}</h3>
+                <div id="content">
+                    <div>
+                        <h5>${month} ${day}</h5>
+                        <h6>${venue}</h6>
+                        <h6>${city} ${region} ${country}</h6>
+                    </div>
+                    <div class="map-ticket">
+                        <a href="${url}">tickets</a>
+                    </div>
+                </div>
+            </div>
+            `;
+
+            events.push({
+                venue: venue,
+                lat: latitude,
+                lng: longitude,
+                info: info
+            });
+
+            html += `<div class="event">
+                        <div class="date">
+                            <span class="month">${month}</span>
+                            <span class="day">${day}</span>
+                        </div>
+                        <div class="location">
+                            <span class="venue">${venue}</span>
+                            <span class="city">${city} ${region} ${country}</span>
+                        </div>
+                        <div class="ticket">
+                            <a href="${url}">tickets</a>
+                        </div>
+                    </div>`;
+        }
+        let data = {
+            events: events,
+            html: html
+        }
+
+        res.send(data);
     });
 });
 
