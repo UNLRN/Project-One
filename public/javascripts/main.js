@@ -3,6 +3,9 @@
 function bandstalker() {
 
     this.eventMarkers = [];
+    this.infowindow = new google.maps.InfoWindow({
+        maxWidth: 200
+    });
 
     this.document = $(document);
 
@@ -142,22 +145,19 @@ bandstalker.prototype.artistEvents = function (e) {
         for (let index = 0; index < data.events.length; index++) {
             let element = data.events[index];
 
-            let infowindow = new google.maps.InfoWindow({
-                content: element.info,
-                maxWidth: 200
-            });
-
             let latLng = new google.maps.LatLng(element.lat, element.lng);
             let marker = new google.maps.Marker({
                 map: map,
                 position: latLng,
                 icon: image,
-                title: element.venue
+                title: element.venue,
+                eventContent: element.info
             });
             
-            marker.addListener('click', function() {
-                infowindow.open(map, marker);
-            });
+            google.maps.event.addListener(marker, 'click', function() {
+                $this.infowindow.setContent(this.eventContent);
+                $this.infowindow.open(map, this);
+            })
 
             $this.eventMarkers.push(marker);
         } 
