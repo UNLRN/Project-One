@@ -167,6 +167,8 @@ bandstalker.prototype.artistEvents = function (e) {
             });
             
             google.maps.event.addListener(marker, 'click', function() {
+                console.log($this.infowindow.getPosition());
+                map.setCenter(this.getPosition());
                 $this.infowindow.setContent(this.eventContent);
                 $this.infowindow.open(map, this);
             })

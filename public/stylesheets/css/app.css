@@ -1219,6 +1219,15 @@ a {
     color: #ff662b;
 }
 
+*::-webkit-scrollbar {
+    width: 1em;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #222325;
+    outline: 1px solid #ff662b;
+}
+
 .navbar {
     top: 0;
     right: 0;
@@ -1703,7 +1712,7 @@ header h1 {
     display: block;
 }
 
-#tracks {
+#tracks, #albums {
     padding: 0;
 }
 
