@@ -34,6 +34,7 @@ function bandstalker() {
     this.document.on('click', '.search-results', this.artistBio.bind(this));
     this.document.on('click', '.search-results', this.artistTracks.bind(this));
     this.document.on('click', '.search-results', this.artistEvents.bind(this));
+    this.document.on('click', '.search-results', this.artistAlbums.bind(this));
     this.document.on('click', '.search-results', this.closeSearch.bind(this));
     this.toggleButton.on('click', this.toggleInfo.bind(this));
 }
@@ -123,6 +124,17 @@ bandstalker.prototype.artistTracks = function (e) {
         url: `/artist/${id}/tracks`
     }).then(function(html) {
         $this.tracks.html(html);
+    });
+}
+
+bandstalker.prototype.artistAlbums = function (e) {
+    let $this = this;
+    let id = $(e.target).attr('artistid');
+    $.ajax({
+        method: 'POST',
+        url: `/artist/${id}/albums`
+    }).then(function(data) {
+        $this.albums.html(data);
     });
 }
 

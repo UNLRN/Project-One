@@ -1,0 +1,63 @@
+/*img, i {
+	width: 75px;
+	height: 75px;
+	padding: 1px 5px 5px 5px;
+}
+
+img {
+	width: 100px;
+	height: 100px;
+	padding: 5px;
+}*/
+
+.card-header:hover {
+	color: #ff662b;
+}
+
+.card {
+  width: auto;                 /* Set width of cards */
+  border: 1px solid #ff662b;    /* Set up Border */
+  border-radius: 4px;           /* Slightly Curve edges */
+  overflow: hidden;             /* Fixes the corners */
+  display: inline-block;                /* Children use Flexbox */
+/*  flex-direction: column;  */     /* Rotate Axis */
+  margin: 10px;
+}
+
+.card-header {
+  color: white;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition: .5s;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  border-bottom: 1px solid #222325;
+  background-color: #222325;
+  padding: 5px 10px;
+}
+
+.card-main {
+/*  display: flex;   */           /* Children use Flexbox */
+/*  flex-direction: column;  */   /* Rotate Axis to Vertical */
+  justify-content: center;    /* Group Children in Center */
+  align-items: center;        /* Group Children in Center (+axis) */
+  padding: 10px 0;            /* Add padding to the top/bottom */
+  background-color: #2C2C2F;
+  cursor: pointer;
+}
+
+.material-icons {
+  font-size: 65px;
+  color: #ff662b;
+  text-align: center;
+}
+
+.main-description {
+  color: white;
+  font-size: 14px;
+  text-align: center;
+}
+

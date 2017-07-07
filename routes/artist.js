@@ -219,14 +219,14 @@ router.post('/:id/related', function (req, res) {
                     let artistURL = body.artists[i].external_urls.spotify;
                     let artistGenres = body.artists[i].genres;
 
-                    let temp = {
-                        artist: artistName,
-                        image: artistImage,
-                        url: artistURL,
-                        genres: artistGenres
-                    }
+                    // let temp = {
+                    //     artist: artistName,
+                    //     image: artistImage,
+                    //     url: artistURL,
+                    //     genres: artistGenres
+                    // }
 
-                    resObj.push(temp);
+                    // resObj.push(temp);
                 }
 
                 res.send(resObj);
@@ -262,7 +262,7 @@ router.post('/:id/albums', function (req, res) {
 
             // albums
             let options = {
-                url: 'https://api.spotify.com/v1/artists/' + artistID + '/albums',
+                url: 'https://api.spotify.com/v1/artists/' + artistID + '/albums?market=US',
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -270,23 +270,21 @@ router.post('/:id/albums', function (req, res) {
             };
             request.get(options, function (error, response, body) {
 
-                let resObj = [];
+                let albumInfo = [];
+                let html = "";
 
                 for (let i = 0; i < body.items.length; i++) {
                     let albumName = body.items[i].name;
                     let albumURL = body.items[i].external_urls.spotify;
                     let albumImage = body.items[i].images;
+                    let albumURI = body.items[i].uri;
 
-                    let temp = {
-                        album: albumName,
-                        image: albumImage,
-                        url: albumURL
-                    }
+                html += `<iframe src="https://open.spotify.com/embed?uri=${albumURI}" width="100%" height="80" frameborder="0" allowtransparency="true"></iframe>`
 
-                    resObj.push(temp);
                 }
 
-                res.send(resObj);
+                res.send(html);
+
             });
         }
     });
