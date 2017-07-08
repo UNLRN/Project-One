@@ -3,6 +3,9 @@
 function bandstalker() {
 
     this.eventMarkers = [];
+    this.infowindow = new google.maps.InfoWindow({
+        maxWidth: 200
+    });
 
     this.document = $(document);
 
@@ -31,6 +34,7 @@ function bandstalker() {
     this.document.on('click', '.search-results', this.artistBio.bind(this));
     this.document.on('click', '.search-results', this.artistTracks.bind(this));
     this.document.on('click', '.search-results', this.artistEvents.bind(this));
+    this.document.on('click', '.search-results', this.artistAlbums.bind(this));
     this.document.on('click', '.search-results', this.closeSearch.bind(this));
     this.toggleButton.on('click', this.toggleInfo.bind(this));
 }
@@ -123,6 +127,17 @@ bandstalker.prototype.artistTracks = function (e) {
     });
 }
 
+bandstalker.prototype.artistAlbums = function (e) {
+    let $this = this;
+    let id = $(e.target).attr('artistid');
+    $.ajax({
+        method: 'POST',
+        url: `/artist/${id}/albums`
+    }).then(function(data) {
+        $this.albums.html(data);
+    });
+}
+
 bandstalker.prototype.artistEvents = function (e) {
     let $this = this;
     let artist = e.target.text;
@@ -142,22 +157,21 @@ bandstalker.prototype.artistEvents = function (e) {
         for (let index = 0; index < data.events.length; index++) {
             let element = data.events[index];
 
-            let infowindow = new google.maps.InfoWindow({
-                content: element.info,
-                maxWidth: 200
-            });
-
             let latLng = new google.maps.LatLng(element.lat, element.lng);
             let marker = new google.maps.Marker({
                 map: map,
                 position: latLng,
                 icon: image,
-                title: element.venue
+                title: element.venue,
+                eventContent: element.info
             });
             
-            marker.addListener('click', function() {
-                infowindow.open(map, marker);
-            });
+            google.maps.event.addListener(marker, 'click', function() {
+                console.log($this.infowindow.getPosition());
+                map.setCenter(this.getPosition());
+                $this.infowindow.setContent(this.eventContent);
+                $this.infowindow.open(map, this);
+            })
 
             $this.eventMarkers.push(marker);
         } 
