@@ -7,11 +7,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var artist = require('./routes/api/artist');
 var search = require('./routes/api/search');
 var artists = require('./routes/artists');
 
 var app = express();
+
+app.use(favicon(__dirname + '/public/images/favicon.png'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,7 +27,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/artist', artist);
 app.use('/search', search);
 app.use('/artists', artists);
 

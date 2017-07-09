@@ -176,7 +176,7 @@ bandstalker.prototype.populateEvents = function (data) {
     let $this = this;
     console.log(data);
     let image = {
-        url: '../images/placeholder.png',
+        url: '/images/placeholder.png',
         size: new google.maps.Size(48, 48),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(24, 48)
